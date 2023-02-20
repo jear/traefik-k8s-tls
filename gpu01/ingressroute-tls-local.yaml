@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: whoami
+  namespace: dev
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - kind: Rule
+    match: Host(`whoami.83.206.89.104.nip.io`)
+    services:
+    - name: whoami
+      port: 80
+  tls:
+    secretName: whoami-secret
